@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'baseUrl' => 'http://example.local',
+    'returnUrl' => 'http://example.local/return',
+    'publicKey' => '',
+    'secretKey' => '',
+];

@@ -1,0 +1,52 @@
+HTTP/1.1 200 OK
+Date: Fri, 19 Aug 2016 06:10:53 GMT
+Content-Type: application/json
+Content-Length: 150
+
+{
+    "data": {
+        "id": "pay_4uHme43oZQ2LLHpFx3u9tRra",
+        "type": "payment",
+        "attributes": {
+            "access_url": null,
+            "amount": 10000,
+            "balance_transaction_id": "bal_txn_o234Pdt3mtxAmBRsaHGZc6yy",
+            "billing": {
+                "address": {
+                    "city": "Melbourne",
+                    "country": "AU",
+                    "line1": "Level 21, 459 Collins st",
+                    "line2": null,
+                    "postal_code": "3000",
+                    "state": "VIC"
+                },
+                "email": "johndoe@example.com",
+                "name": "John Doe",
+                "phone": "+61 7 7010 1111"
+            },
+            "currency": "PHP",
+            "description": "Order #4000",
+            "disputed": false,
+            "external_reference_number": null,
+            "fee": 250,
+            "livemode": false,
+            "net_amount": 9750,
+            "origin": "api",
+            "payment_intent_id": null,
+            "payout": null,
+            "source": {
+                "id": "src_ymDS1pzqbk8bpjB47CD7WK4S",
+                "type": "gcash"
+            },
+            "statement_descriptor": "PAYMONGO",
+            "status": "paid",
+            "tax_amount": null,
+            "refunds": [],
+            "taxes": [],
+            "available_at": 1633510800,
+            "created_at": 1633264662,
+            "paid_at": 1633264662,
+            "updated_at": 1633264662
+        }
+    }
+}

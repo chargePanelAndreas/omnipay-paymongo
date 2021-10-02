@@ -1,0 +1,13 @@
+HTTP/1.1 400 Bad Request
+Date: Fri, 19 Aug 2016 06:10:53 GMT
+Content-Type: application/json
+Content-Length: 150
+
+{
+     "errors": [
+         {
+             "code": "resource_not_found",
+             "detail": "No such payment intent with id random_car."
+         }
+     ]
+ }

@@ -1,0 +1,13 @@
+HTTP/1.1 400 Bad Request
+Date: Fri, 19 Aug 2016 06:10:53 GMT
+Content-Type: application/json
+Content-Length: 150
+
+{
+    "errors": [
+        {
+            "code": "resource_succeeded_state",
+            "detail": "Payment intent with id pi_u9zxu56zCZecBPLQRMd1Qmhd has already succeeded."
+        }
+    ]
+}

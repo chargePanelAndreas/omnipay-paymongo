@@ -1,0 +1,38 @@
+HTTP/1.1 200 OK
+Date: Fri, 19 Aug 2016 06:10:53 GMT
+Content-Type: application/json
+Content-Length: 150
+
+{
+    "data": {
+        "id": "src_AmKhe8cFaer2SRWLz44xBmsD",
+        "type": "source",
+        "attributes": {
+            "amount": 10000,
+            "billing": {
+                "address": {
+                    "city": "Melbourne",
+                    "country": "AU",
+                    "line1": "Level 21, 459 Collins st",
+                    "line2": null,
+                    "postal_code": "3000",
+                    "state": "VIC"
+                },
+                "email": "johndoe@example.com",
+                "name": "John Doe",
+                "phone": "+61 7 7010 1111"
+            },
+            "currency": "PHP",
+            "livemode": false,
+            "redirect": {
+                "checkout_url": "https://test-sources.paymongo.com/sources?id=src_AmKhe8cFaer2SRWLz44xBmsD",
+                "failed": "http://paymongo.local/fail",
+                "success": "http://paymongo.local/success"
+            },
+            "status": "pending",
+            "type": "gcash",
+            "created_at": 1633220093,
+            "updated_at": 1633220093
+        }
+    }
+}

@@ -1,0 +1,36 @@
+HTTP/1.1 200 OK
+Date: Fri, 19 Aug 2016 06:10:53 GMT
+Content-Type: application/json
+Content-Length: 150
+
+{
+    "data": {
+        "id": "pm_56S7f5U7kkQEhAgrForLJvjZ",
+        "type": "payment_method",
+        "attributes": {
+            "livemode": false,
+            "type": "card",
+            "billing": {
+                "address": {
+                    "city": "Melbourne",
+                    "country": "AU",
+                    "line1": "Level 21, 459 Collins st",
+                    "line2": null,
+                    "postal_code": "3000",
+                    "state": "VIC"
+                },
+                "email": "johndoe@example.com",
+                "name": "John Doe",
+                "phone": "+61 7 7010 1111"
+            },
+            "created_at": 1633097201,
+            "updated_at": 1633097201,
+            "details": {
+                "exp_month": 12,
+                "exp_year": 26,
+                "last4": "4345"
+            },
+            "metadata": null
+        }
+    }
+}

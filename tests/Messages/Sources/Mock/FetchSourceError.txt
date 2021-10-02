@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Date: Fri, 19 Aug 2016 06:10:53 GMT
+Content-Type: application/json
+Content-Length: 150
+
+{
+    "errors": [
+        {
+            "code": "resource_not_found",
+            "detail": "No such source with id src_AmKhe8cFaer2SRWLz44xBmsDs."
+        }
+    ]
+}

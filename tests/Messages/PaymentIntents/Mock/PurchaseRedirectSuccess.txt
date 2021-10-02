@@ -1,0 +1,42 @@
+HTTP/1.1 200 OK
+Date: Fri, 19 Aug 2016 06:10:53 GMT
+Content-Type: application/json
+Content-Length: 150
+
+{
+    "data": {
+        "id": "pi_sHYTVVRaPeAU9L3s7gNj15Go",
+        "type": "payment_intent",
+        "attributes": {
+            "amount": 10000,
+            "currency": "PHP",
+            "description": null,
+            "statement_descriptor": "PAYMONGO",
+            "status": "awaiting_next_action",
+            "livemode": false,
+            "client_key": "pi_sHYTVVRaPeAU9L3s7gNj15Go_client_9xcwSuxAVCmftufn7hhWULoG",
+            "created_at": 1633096118,
+            "updated_at": 1633096118,
+            "last_payment_error": null,
+            "payment_method_allowed": [
+                "card"
+            ],
+            "payments": [],
+            "next_action": {
+                "type": "redirect",
+                "redirect": {
+                    "url": "https://test-sources.paymongo.com/sources?id=src_QpqBxJjtgXsqxRzxr7w6Zjef",
+                    "return_url": "http://paymongo.local/return"
+                }
+            },
+            "payment_method_options": {
+                "card": {
+                    "request_three_d_secure": "any"
+                }
+            },
+            "metadata": {
+                "foo": "bar"
+            }
+        }
+    }
+}

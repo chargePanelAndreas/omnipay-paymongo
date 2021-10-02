@@ -1,0 +1,38 @@
+{
+    "name": "mediabeastnz/omnipay-paymongo",
+    "type": "library",
+    "version": "3.0.0",
+    "description": "Paymongo gateway for Omnipay payment processing library",
+    "keywords": [
+        "after pay",
+        "paymongo",
+        "laybuy",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "gateway"
+    ],
+    "homepage": "https://github.com/mediabeastnz/omnipay-paymongo",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Myles Derham",
+            "email": "myles.derham@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Paymongo\\" : "src/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "require": {
+        "omnipay/common": "^3"
+    },
+    "require-dev": {
+        "omnipay/tests": "^3"
+    }
+}
