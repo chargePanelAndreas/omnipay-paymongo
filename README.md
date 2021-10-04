@@ -1,6 +1,5 @@
-# Omnipay: Paymongo
+# Omnipay: Paymongo **Note! This is not an official Omnipay/Paymongo Package.**
 
-**Note! This is not an official Omnipay/Paymongo Package.**
 **Paymongo driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
