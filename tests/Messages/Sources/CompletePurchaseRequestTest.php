@@ -28,7 +28,7 @@ class CompletePurchaseRequestTest extends TestCase
         // set existing session
         $session_name = $this->request->getSourceIdSessionName();
         $this->request->saveSourceIdToSession('src_XpHZz6C2wk112P9Mufguhcch');
-        $this->getHttpRequest()->request->add([
+        $this->getHttpRequest()->query->add([
             'session' => $session_name,
         ]);
     }
@@ -43,7 +43,7 @@ class CompletePurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
 
-        $this->assertSame('100.00', $data['data']['attributes']['amount']);
+        $this->assertSame(10000, $data['data']['attributes']['amount']);
         $this->assertSame('Order #4000', $data['data']['attributes']['description']);
         $this->assertSame('source', $data['data']['attributes']['source']['type']);
         $this->assertSame('src_XpHZz6C2wk112P9Mufguhcch', $data['data']['attributes']['source']['id']);
@@ -53,6 +53,7 @@ class CompletePurchaseRequestTest extends TestCase
 
     public function testSessionQueryRequired()
     {
+        $this->getHttpRequest()->query->remove('session');
         $this->expectException(InvalidRequestException::class);
         $this->expectExceptionMessage("The sessionName parameter or session query is required or invalid.");
 
@@ -61,8 +62,9 @@ class CompletePurchaseRequestTest extends TestCase
 
     public function testSourceIdRequired()
     {
+        $this->request->saveSourceIdToSession('');
         $this->expectException(InvalidRequestException::class);
-        $this->expectExceptionMessage("The sessionName parameter or session query is required or invalid.");
+        $this->expectExceptionMessage("Unable to load Source id from session.");
 
         $this->request->getData();
     }

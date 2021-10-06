@@ -36,7 +36,7 @@ class CompletePurchaseRequestTest extends TestCase
 
     public function testGetDataWithPaymentIntentIdFromRequest()
     {
-        $this->getHttpRequest()->request->add([
+        $this->getHttpRequest()->query->add([
             'paymentIntentId' => 'pi_sHYTVVRaPeAU9L3s7gNj15Go'
         ]);
         $this->request->getData();

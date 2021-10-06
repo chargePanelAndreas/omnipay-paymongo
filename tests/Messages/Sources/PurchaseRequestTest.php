@@ -7,7 +7,7 @@ use Omnipay\Tests\TestCase;
 class PurchaseRequestTest extends TestCase
 {
     /**
-     * @var PurchaseRequestTest
+     * @var PurchaseRequest
      */
     private $request;
 
@@ -203,11 +203,10 @@ class PurchaseRequestTest extends TestCase
     public function testSendSuccess()
     {
         $this->setMockHttpResponse('PurchaseSourceSuccess.txt');
-        /** @var Response $response */
         $response = $this->request->send();
 
         $this->assertNotEmpty($response->getStatus());
-        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertSame('src_XpHZz6C2wk112P9Mufguhcch', $response->getTransactionReference());
         $this->assertSame('https://test-sources.paymongo.com/sources?id=src_XpHZz6C2wk112P9Mufguhcch', $response->getRedirectUrl());
