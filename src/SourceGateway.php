@@ -6,6 +6,8 @@
 
 namespace Omnipay\Paymongo;
 
+use Omnipay\Paymongo\Message\Sources\CompletePurchaseRequest;
+
 /**
  * Paymongo Payment Intents Gateway.
  *
@@ -38,10 +40,10 @@ class SourceGateway extends AbstractGateway
     /**
      * @inheritdoc
      *
-     * In reality, we're confirming the payment intent.
+     * In reality, we're creating the payment from source id stored from temporary session.
      * This method exists as an alias to in line with how Omnipay interfaces define things.
      *
-     * @return \Omnipay\Paymongo\Message\PaymentIntents\ConfirmPaymentIntentRequest
+     * @return \Omnipay\Paymongo\Message\Sources\CompletePurchaseRequest
      */
     public function completePurchase(array $parameters = [])
     {

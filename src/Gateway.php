@@ -14,6 +14,6 @@ namespace Omnipay\Paymongo;
  * @link https://paymongo.com/docs/api
  *
  */
-class Gateway extends AbstractGateway
+class Gateway extends PaymentIntentsGateway
 {
 }

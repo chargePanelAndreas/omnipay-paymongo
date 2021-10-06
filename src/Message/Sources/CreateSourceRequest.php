@@ -3,7 +3,7 @@
 /**
  * Paymongo Fetch Payment Intent Request.
  */
-namespace Omnipay\Paymongo\Message\PaymentIntents;
+namespace Omnipay\Paymongo\Message\Sources;
 
 /**
  * Paymongo Fetch Payment Intent Request.
@@ -21,18 +21,16 @@ namespace Omnipay\Paymongo\Message\PaymentIntents;
  *
  * @link https://paymongo.com/docs/api/payment_intents/retrieve
  */
-class FetchPaymentRequest extends AbstractRequest
+class FetchSourceRequest extends AbstractRequest
 {
     /**
      * @inheritdoc
      */
     public function getData()
     {
-        $this->validate('paymentIntentId');
+        $this->validate('sourceId');
 
-        return [
-            'clientKey' => $this->getClientKey()
-        ];
+        return [];
     }
 
     /**
@@ -48,6 +46,6 @@ class FetchPaymentRequest extends AbstractRequest
      */
     public function getEndpoint()
     {
-        return $this->endpoint . '/payment_intents/' . $this->getPaymentIntentId();
+        return $this->endpoint . '/sources/' . $this->getSourceId();
     }
 }

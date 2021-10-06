@@ -3,12 +3,12 @@
 /**
  * Paymongo Payment Intents Authorize Request.
  */
-namespace Omnipay\Paymongo\Message;
+namespace Omnipay\Paymongo\Message\Sources;
 
-use Money\Formatter\DecimalMoneyFormatter;
+use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
- * Paymongo Payment Intents Authorize Request.
+ * Paymongo Payment Intents Purchase Request.
  *
  * A payment method is required. It can be set using the `paymentMethod`, `source`,
  * `cardReference` or `token` parameters.
@@ -62,11 +62,11 @@ use Money\Formatter\DecimalMoneyFormatter;
  *   // the 3DS 2.0 authentication. If you do not set a return url, payment with such
  *   // cards will fail.
  *
- *   // Do a authorize transaction on the gateway
- *   $paymentIntent = $gateway->authorize(array(
+ *   // Do a purchase transaction on the gateway
+ *   $paymentIntent = $gateway->purchase(array(
  *       'amount'                   => '10.00',
  *       'currency'                 => 'USD',
- *       'description'              => 'This is a test authorize transaction.',
+ *       'description'              => 'This is a test purchase transaction.',
  *       'paymentMethod'            => $paymentMethod,
  *       'returnUrl'                => $completePaymentUrl,
  *       'confirm'                  => true,
@@ -93,74 +93,23 @@ use Money\Formatter\DecimalMoneyFormatter;
  * @see \Omnipay\Paymongo\Message\PaymentIntents\CreatePaymentMethodRequest
  * @see \Omnipay\Paymongo\Message\PaymentIntents\ConfirmPaymentIntentRequest
  * @link https://paymongo.com/docs/api/payment_intents
+ * @method CompletePurchaseResponse send()
  */
-class CreatePaymentRequest extends AbstractRequest
+class ListPaymentsRequest extends AbstractRequest
 {
-    /**
-     * @param string $value
-     *
-     * @return AbstractRequest provides a fluent interface.
-     */
-    public function setPaymentMethodAllowed($value)
-    {
-        return $this->setParameter('paymentMethodAllowed', $value);
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentMethodAllowed()
-    {
-        $val = $this->getParameter('paymentMethodAllowed');
-        return !empty($val) ? $val : 'card';
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return AbstractRequest provides a fluent interface.
-     */
-    public function setRequestThreeDSecure($value)
-    {
-        return $this->setParameter('requestThreeDSecure', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRequestThreeDSecure()
-    {
-        $val = $this->getParameter('requestThreeDSecure');
-        return !empty($val) ? $val : 'any';
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getData()
     {
-        $this->validate('amount', 'currency');
+        $this->validate('apiKey');
+        $this->validate('amount', 'description', 'sourceId');
 
-        $data = [
-            'attributes' => [
-                'amount' => $this->getAmountInteger(),
-                'payment_method_allowed' => [
-                    $this->getPaymentMethodAllowed()
-                ],
-                "payment_method_options" => [
-                    "card" => [
-                        "request_three_d_secure" => $this->getRequestThreeDSecure(),
-                    ]
-                ],
-               "currency" => $this->getCurrency(),
-               "description" => $this->getDescription(),
-               "statement_descriptor" => $this->getStatementDescriptor(),
-            ]
-        ];
-
-        if ($metadata = $this->getMetadata()) {
-            $data['attributes']["metadata"] = $metadata;
-        }
+        $data = [];
+        $data['attributes']['amount'] = $this->getAmountInteger();
+        $data['attributes']['description'] = $this->getDescription();
+        $data['attributes']['source']['type'] = 'source';
+        $data['attributes']['source']['id'] = $this->getSourceId();
+        $data['attributes']['currency'] = $this->getCurrency();
+        $data['attributes']['statement_descriptor'] = $this->getStatementDescriptor();
 
         return [
             'data' => $data
@@ -172,7 +121,6 @@ class CreatePaymentRequest extends AbstractRequest
      */
     public function getEndpoint()
     {
-        return $this->endpoint.'/payment_intents';
+        return $this->endpoint.'/payments';
     }
-
 }

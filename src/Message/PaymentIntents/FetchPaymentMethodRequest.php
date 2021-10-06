@@ -21,13 +21,14 @@ namespace Omnipay\Paymongo\Message\PaymentIntents;
  *
  * @link https://paymongo.com/docs/api/payment_intents/retrieve
  */
-class ListPaymentsRequest extends AbstractRequest
+class FetchPaymentIntentRequest extends AbstractRequest
 {
     /**
      * @inheritdoc
      */
     public function getData()
     {
+        $this->validate('apiKey');
         $this->validate('paymentIntentId');
 
         return [
