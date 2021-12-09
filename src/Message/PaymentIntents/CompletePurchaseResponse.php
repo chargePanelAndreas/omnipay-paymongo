@@ -23,7 +23,7 @@ class CompletePurchaseResponse extends PurchaseResponse
     public function isSuccessful()
     {
         // we need to verify if the transaction id
-        if ($this->isTransactionIdMatches()) {
+        if (!$this->isTransactionIdMatches()) {
             return false;
         }
 
@@ -39,7 +39,7 @@ class CompletePurchaseResponse extends PurchaseResponse
      */
     public function isTransactionIdMatches()
     {
-        return $this->getTransactionId() != $this->request->getTransactionId();
+        return $this->getTransactionId() == $this->request->getTransactionId();
     }
 
     /**
@@ -51,23 +51,11 @@ class CompletePurchaseResponse extends PurchaseResponse
      */
     public function getMessage()
     {
-        if ($this->isTransactionIdMatches()) {
+        if (!$this->isTransactionIdMatches()) {
             return 'Unable to process. Transaction id from this payment intent does not match with the current transaction id.';
         }
 
-        if (!$this->isSuccessful() && $this->getStatus() == 'awaiting_payment_method') {
-            if (isset($this->data['data']['attributes']['last_payment_error']) && $this->data['data']['attributes']['last_payment_error']) {
-                return $this->data['data']['attributes']['last_payment_error'];
-            }
-
-            return 'Unable to process. Payment not succeeded. Please try again.';
-        }
-
-        if (!$this->isSuccessful() && isset($this->data['errors'][0]['detail'])) {
-            return $this->data['errors'][0]['detail'];
-        }
-
-        return null;
+        return parent::getMessage();
     }
 
 }

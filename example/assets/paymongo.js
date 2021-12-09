@@ -59,11 +59,7 @@ window.Paymongo = {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (timer) clearTimeout(timer);
-                if (xhr.status < 300) {
-                    if (o.success) o.success($._xhrResp(xhr), xhr.status);
-                }
-                else if (o.error) o.error(xhr, xhr.status, xhr.statusText);
-                if (o.complete) o.complete(xhr, xhr.status, xhr.statusText);
+                if (o.complete) o.complete($._xhrResp(xhr), xhr.status);
             }
             else if (o.progress) o.progress(++n);
         };

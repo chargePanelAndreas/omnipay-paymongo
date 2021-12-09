@@ -50,4 +50,35 @@ class PurchaseResponse extends Response
         return null;
     }
 
+
+    /**
+     * Get the first error message from the response.
+     *
+     * Returns null if the request was successful.
+     *
+     * @return string|null
+     */
+    public function getMessage()
+    {
+        if (!$this->isSuccessful() && $this->getStatus() == 'awaiting_payment_method') {
+            if (isset($this->data['data']['attributes']['last_payment_error']) && $this->data['data']['attributes']['last_payment_error']) {
+
+                if (is_string($this->data['data']['attributes']['last_payment_error'])) {
+                    return $this->data['data']['attributes']['last_payment_error'];
+                } else {
+                    if (isset($this->data['data']['attributes']['last_payment_error']['failed_message']) && $this->data['data']['attributes']['last_payment_error']['failed_message']) {
+                        return $this->data['data']['attributes']['last_payment_error']['failed_message'];
+                    }
+                }
+            }
+
+            return 'Unable to process. Payment not succeeded. Please try again.';
+        }
+
+        if (!$this->isSuccessful() && isset($this->data['errors'][0]['detail'])) {
+            return $this->data['errors'][0]['detail'];
+        }
+
+        return parent::getMessage();
+    }
 }

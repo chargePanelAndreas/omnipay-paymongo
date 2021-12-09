@@ -111,6 +111,18 @@ class CompletePurchaseRequestTest extends TestCase
         $this->assertSame('pi_sHYTVVRaPeAU9L3s7gNj15Go', $response->getPaymentIntentReference());
     }
 
+    public function testSendWithTransactionCancelled()
+    {
+        $this->setMockHttpResponse('CompletePurchaseCancelled.txt');
+        $this->request->setPaymentIntentId('pi_sHYTVVRaPeAU9L3s7gNj15Go');
+        $response = $this->request->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('The card was declined as processor encountered a payer authentication problem.', $response->getMessage());
+        $this->assertSame('pi_sHYTVVRaPeAU9L3s7gNj15Go', $response->getPaymentIntentReference());
+    }
+
     public function testSendError()
     {
         $this->setMockHttpResponse('PurchaseError.txt');
