@@ -1,5 +1,7 @@
 # Omnipay: Paymongo **Note! This is not an official Omnipay/Paymongo Package.**
 
+> **Gcash/Grabpay is Not ready for production because of the webhook requirements.**
+
 **Paymongo driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
@@ -31,6 +33,10 @@ repository.
 [TODO]
 
 for now, see [example](./example).
+> Note and Todo! For Gcash/Grabpay, if the transaction is successfully authorized from Paymongo and customer did not click redirect 
+> back to merchant site, the transaction will be refunded back to customer after 1 hour.
+> The creation of the payment should be made via webhook.
+> see: https://developers.paymongo.com/docs/accepting-gcash-payments#2-have-the-customer-authorize-the-payment
 
 ## TODO
 
