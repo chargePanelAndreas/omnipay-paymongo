@@ -3,3 +3,4 @@ example/config.php
 composer.lock
 composer.phar
 phpunit.xml
+.DS_Store
